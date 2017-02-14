@@ -1,0 +1,15 @@
+<!-- 基础模板，默认所有页面的模板都由此开始 -->
+
+<!DOCTYPE html>
+<html>
+<%- partial('_partial/head') %>
+<!-- <% if (typeof page.title == 'undefined') { %>-->
+<!--<body class="home-template">-->
+<!--<% } else { %>-->
+<!--<body class="post-template">-->
+<!--<% } %>-->
+  <%-  body %>
+  <%- partial('_partial/footer') %>
+  <%- partial('_partial/after_all') %>
+</body>
+</html>

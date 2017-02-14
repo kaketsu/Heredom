@@ -1,0 +1,100 @@
+    <head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+		<title>华球球的博客</title>
+		<meta name="description" content="Multi-Level Push Menu"/>
+		<meta name="author" content="heredom" />
+		<link rel="shortcut icon" href="../favicon.ico">
+		<link rel="stylesheet" type="text/css" href="<%- config.root %>css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="<%- config.root %>css/icons.css" />
+  		<link rel="stylesheet" type="text/css" href="<%- config.root %>css/component.css" />
+		<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	</head>
+	<body>
+		<div class="container">
+			<!-- Push Wrapper -->
+			<div class="mp-pusher" id="mp-pusher">
+
+				<!-- mp-menu -->
+				<nav id="mp-menu" class="mp-menu">
+					<div class="mp-level">
+						<div class="home-intro">
+							<h2>
+								华球球
+							</h2>
+							<p>Web前端知识的自我积累</p>
+						</div>
+						<ul>
+							<li>
+								<a href="#"><i class="fa fa-archive" style="padding-right:15px;"></i>归档</a>
+								<div class="mp-level">
+									<div class="home-intro">
+										<h2>归档</h2>
+									</div>
+									<ul>
+										<form id="search-form" action="">
+											<input type="text" class="search search-archive" placeholder="Search.."/>
+										</form>
+										<% site.posts.sort('date', -1).each(function(post){ %>
+										<li class="search-archive-li">
+											<a href="<%= config.root %><%= post.path %>"><%= post.title %></a>
+										</li>
+										<% }); %>
+									</ul>
+								</div>
+							</li>
+							<li>
+								<a href="#"><i class="fa fa-bookmark" style="padding-right:15px;"></i>分类</a>
+								<div class="mp-level">
+									<div class="home-intro">
+										<h2>分类</h2>
+									</div>
+									<ul>
+										<% site.categories.sort('name').each(function(item){ %>
+										<li>
+											<a href="<%- config.root %><%- item.path %>">&nbsp;&nbsp;&nbsp;<%= item.name %></a>
+										</li>
+										<% }); %>
+									</ul>
+								</div>
+							</li>
+							<li>
+								<a href="#"><i class="fa fa-tags" style="padding-right:15px;"></i>标签</a>
+								<div class="mp-level">
+									<div class="home-intro">
+										<h2>标签</h2>
+									</div>
+									<ul>
+										<% site.tags.sort('name').each(function(item){ %>
+										<li>
+											<a href="<%- config.root %><%- item.path %>">&nbsp;&nbsp;&nbsp;<%= item.name %></a>
+										</li>
+										<% }); %>
+									</ul>
+								</div>
+							</li>
+							<li>
+								<a href="/about"><i class="fa fa-user" style="padding-right:15px;"></i>关于我</a>
+							</li>
+						</ul>
+					</div>
+				</nav>
+				<!-- /mp-menu -->
+
+				<div class="scroller"><!-- this is for emulating position fixed of the nav -->
+					<div class="scroller-inner">
+						<!-- Top Navigation -->
+						<div class="content clearfix">
+							<div class="block clearfix">
+								<p>
+									<a href="#" id="trigger" class="menu-trigger">
+									</a>
+									<a href="/" id="nexus-back">华球球的博客</a>
+								</p>
+							</div>
+						</div>
+					</div><!-- /scroller-inner -->
+						
+
+						

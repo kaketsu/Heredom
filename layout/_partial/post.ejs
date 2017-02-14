@@ -1,0 +1,44 @@
+<% permalink = config.url + config.root + post.path %>
+
+<main class="content" role="main">
+    <article class="post" >
+    <span class="post-meta">
+        <h1 class="post-title" style="margin: 14px 0;color:#50585D"><%- post.title %></h1>
+        <div class="post-meta">
+            发表于
+            <time datetime="<%= date_xml(post.date) %>"
+                    itemprop="datePublished"><%= date(post.date, null) %></time>
+            | 分类于 
+            <div class="tag-tile" style="display:inline-block;">
+                <% if (post.categories && post.categories.length){ %>
+                <% post.categories.forEach(function(cg) { %>
+                <a data-pjax href='<%= config.root + cg.path %>'><%= cg.name %></a>
+                <% }); %>
+                <% } %>
+            </div>
+        </div>
+    </span>
+
+        <section class="post-content">
+            <%- post.content %>
+        </section>
+        <hr/>
+        <nav class="pagination" style="width:auto" role="pagination">
+            <% if (page.prev) { %>
+            <a data-pjax class="newer-posts" href="<%- config.root %><%- page.prev.path %>">← Prev Post</a>
+            <% } else { %>
+            <a style="cursor:default" class="newer-posts" href="#">This is the First Post</a>
+            <% } %>
+            <% if (page.next) { %>
+            <a data-pjax class="older-posts" href="<%- config.root %><%- page.next.path %>">Next Post →</a>
+            <% } %>
+        </nav>
+        <br/>
+        <br/>
+        <section id="comment">
+            <div id="comment-box"></div>
+        </section>
+
+
+    </article>
+</main>

@@ -1,0 +1,50 @@
+<main class="main">
+
+    <% page.posts.each(function(post) { %>
+    <article class="post">
+
+        <header class="post-header">
+            <h1 class="post-title"><a data-pjax href="<%- config.root %><%- post.path %>"><%- post.title %></a>
+            </h1>
+
+            <div class="post-meta">
+                发表于
+                <time datetime="<%= date_xml(post.date) %>"
+                      itemprop="datePublished"><%= date(post.date, null) %></time>
+                | 分类于 
+               <div class="tag-tile" style="display:inline-block;">
+                    <% if (post.categories && post.categories.length){ %>
+                    <% post.categories.forEach(function(tag) { %>
+                    <a data-pjax href='<%= config.root + tag.path %>'><%= tag.name %></a>
+                    <% }); %>
+                    <% } %>
+                </div>
+            </div>
+        </header>
+        <section class="post-excerpt">
+            <p>
+                <% if (post.excerpt){ %>
+                <%- post.excerpt %>
+                <% } else { %>
+                <%- post.content.replace(/<(?:.|\n)*?>/gm, '').substr(0, 220)+"..." %>
+                <% } %>
+            </p>
+            <% if (theme.excerpt_link) { %>
+            <p class="read-more">
+                <a data-pjax href="<%- config.root %><%- post.path %>"
+                   class="excerpt-link"><%= theme.excerpt_link %> »</a>
+            </p>
+            <% } %>
+        </section>
+    </article>
+    <% }); %>
+    <nav class="pagination" role="pagination">
+        <% if (page.prev) { %>
+        <a data-pjax class="newer-posts" href="<%- config.root %><%- page.prev_link %>">← Newer Posts</a>
+        <% } %>
+        <span class="page-number">Page <%- page.current %> of <%- page.total %></span>
+        <% if (page.next) { %>
+        <a data-pjax class="older-posts" href="<%- config.root %><%- page.next_link %>">Older Posts →</a>
+        <% } %>
+    </nav>
+</main>
